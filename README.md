@@ -1,4 +1,19 @@
-## Hi there 👋
+## Hello I'm Leandro a.k.a RaviolPignolo
+
+I do Manual Testing and Dev
+I like coding, café and videogames
+
+I'm currently particpating in NaerZone WoW Server as Tester and VR LibrasClub as WebDeveloper
+
+Actual Tech
+-HTML 
+-CSS 
+-Js
+-Python
+
+Learning Tech
+-React
+-Selenium
 
 <!--
 **RaviolPignolo/RaviolPignolo** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.

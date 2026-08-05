@@ -5,6 +5,13 @@ I do Manual Testing and Dev.
 I like coding, café and videogames.
 I'm a OTP Karthus in League of Legends, here are my stats:
 <!---LOL-STATS-START-HERE--->
+### 📊 Stats de LoL — Karthus
+
+- **Maestría:** Nivel 119 — 1,560,029 puntos
+- **Rango (Solo/Duo):** Gold I — 38 LP (25W / 19L, 56.8% WR general)
+- **Winrate con Karthus (últimas 30 partidas ranked):** 60.0% (18W / 12L)
+
+_Actualizado automáticamente · 2026-08-05 03:15 UTC_
 <!---LOL-STATS-END-HERE--->
 
 # Thing i know

@@ -15,13 +15,9 @@ I'm a OTP Karthus in League of Legends, here you can se my data:
 _Last update · 2026-08-05 16:17 UTC_
 <!---LOL-STATS-END-HERE--->
 
-# Thing i know
-Actual Tech
--HTML 
--CSS 
--Js
--Python
+# Abilities
+Tech i know:  
+[![My Skills](https://skillicon.dev/icon?i=html,css,js,figma,postgres,postman,py)]
 
-Learning Tech
--React
--Selenium
+Learning Tech:  
+[![Future Skills](https://skillicon.dev/icon?i=cypress,react,selenium)]

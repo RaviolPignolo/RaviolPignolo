@@ -1,10 +1,13 @@
 ## Hello I'm Leandro a.k.a RaviolPignolo
 
-I do Manual Testing and Dev
-I like coding, café and videogames
+# About me
+I do Manual Testing and Dev.
+I like coding, café and videogames.
+I'm a OTP Karthus in League of Legends, here are my stats:
+<!---LOL-STATS-START-HERE--->
+<!---LOL-STATS-END-HERE--->
 
-I'm currently particpating in NaerZone WoW Server as Tester and VR LibrasClub as WebDeveloper
-
+# Thing i know
 Actual Tech
 -HTML 
 -CSS 
@@ -14,6 +17,8 @@ Actual Tech
 Learning Tech
 -React
 -Selenium
+
+
 
 <!--
 **RaviolPignolo/RaviolPignolo** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.

@@ -1,0 +1,45 @@
+name: Update LoL stats in README
+
+on:
+  schedule:
+    # Corre todos los días a las 09:00 UTC (~06:00 en LAS/Argentina). Ajustá si querés otro horario.
+    - cron: "0 9 * * *"
+  workflow_dispatch: {} # te permite correrlo manualmente desde la pestaña Actions
+
+permissions:
+  contents: write
+
+jobs:
+  update-stats:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Instalar dependencias
+        run: pip install requests
+
+      - name: Ejecutar script de stats
+        env:
+          RIOT_API_KEY: ${{ secrets.RIOT_API_KEY }}
+          RIOT_GAME_NAME: "RaviolPignolo"
+          RIOT_TAG_LINE: "K4rth"
+          PLATFORM_REGION: "la2"
+          ROUTING_REGION: "americas"
+          CHAMPION_NAME: "Karthus"
+          MATCHES_TO_SCAN: "30"
+          README_PATH: "README.md"
+        run: python update_readme.py
+
+      - name: Commit y push si hubo cambios
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add README.md
+          git diff --quiet && git diff --staged --quiet || git commit -m "chore: actualizar stats de LoL"
+          git push

@@ -158,7 +158,7 @@ def get_season_start_time():
     """Devuelve el timestamp de inicio de la season actual (1 de enero UTC)."""
     now = datetime.datetime.now(datetime.timezone.utc)
     start_of_year = datetime.datetime(now.year, 1, 1, tzinfo=datetime.timezone.utc)
-    return int(start_of_year.timestamp() * 1000)
+    return int(start_of_year.timestamp())
 
 
 def get_match_ids(puuid, queue, start=0, count=100, start_time=None):

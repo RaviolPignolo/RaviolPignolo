@@ -16,8 +16,7 @@ _Last update · 2026-08-05 16:35 UTC_
 <!---LOL-STATS-END-HERE--->
 
 # Abilities
-Tech i know:  
-[![My Skills](https://skillicon.dev/icon?i=html,css,js,figma,postgres,postman,py)]
-
-Learning Tech:  
-[![Future Skills](https://skillicon.dev/icon?i=cypress,react,selenium)]
+### Tech i know:  
+[![My Skills](https://skillicons.dev/icons?i=html,css,js,figma,postgres,postman,py)](https://skillicons.dev)  
+### Learning Tech:  
+[![Future Skills](https://skillicons.dev/icons?i=cypress,react,selenium)](https://skillicons.dev)

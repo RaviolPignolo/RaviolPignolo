@@ -1,6 +1,6 @@
-## Hello I'm Leandro a.k.a. RaviolPignolo
+# Hello I'm Leandro a.k.a. RaviolPignolo
 
-# About me
+## About me
 I do Manual Testing and Dev.  
 I like coding, café and videogames.  
 I'm a OTP Karthus in League of Legends, here you can se my data:

@@ -14,7 +14,7 @@ I'm a OTP Karthus in League of Legends, here you can se my data:
 - **Last Ranked Game:** Will be updated automatically on the next run
 - **Last Normal Game:** Will be updated automatically on the next run
 
-_Last update · 2026-08-05 16:35 UTC_
+_Last update · 2026-08-09 09:32 UTC_
 <!---LOL-STATS-END-HERE--->
 
 # Abilities

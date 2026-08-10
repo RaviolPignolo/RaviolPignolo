@@ -29,9 +29,11 @@ import time
 import requests
 
 # Configuración del entorno.
-RIOT_API_KEY = os.environ["RIOT_API_KEY"]
-GAME_NAME = os.environ["RIOT_GAME_NAME"]
-TAG_LINE = os.environ["RIOT_TAG_LINE"]
+# Se usan valores por defecto para que el módulo pueda importarse en pruebas
+# sin que las variables de entorno estén presentes.
+RIOT_API_KEY = os.environ.get("RIOT_API_KEY", "")
+GAME_NAME = os.environ.get("RIOT_GAME_NAME", "")
+TAG_LINE = os.environ.get("RIOT_TAG_LINE", "")
 PLATFORM = os.environ.get("PLATFORM_REGION", "la2")
 ROUTING = os.environ.get("ROUTING_REGION", "americas")
 CHAMPION_NAME = os.environ.get("CHAMPION_NAME", "Karthus")
@@ -181,6 +183,77 @@ def get_match_ids(puuid, queue, start=0, count=100, start_time=None):
     return riot_get(ids_url, params=params)
 
 
+def format_time_since(played_at, now=None):
+    """Convierte un timestamp de partida en un texto legible como "3h 25m ago".
+
+    Args:
+        played_at (datetime | None): Momento en el que se jugó la partida.
+        now (datetime | None, optional): Referencia actual para calcular la diferencia.
+
+    Returns:
+        str: Texto resumido del tiempo transcurrido.
+    """
+    if played_at is None:
+        return "Never"
+
+    if now is None:
+        now = datetime.datetime.now(datetime.timezone.utc)
+
+    delta = now - played_at
+    total_seconds = int(delta.total_seconds())
+    if total_seconds <= 0:
+        return "just now"
+
+    days, remainder = divmod(total_seconds, 86400)
+    hours, remainder = divmod(remainder, 3600)
+    minutes = remainder // 60
+
+    parts = []
+    if days:
+        parts.append(f"{days}d")
+    if hours:
+        parts.append(f"{hours}h")
+    if minutes or not parts:
+        parts.append(f"{minutes}m")
+
+    return f"{' '.join(parts)} ago"
+
+
+def get_last_match_age(puuid, queue, start_time=None):
+    """Devuelve el tiempo transcurrido desde la última partida de una cola.
+
+    Args:
+        puuid (str): Identificador único de la cuenta del jugador.
+        queue (int | list[int]): Código o códigos de cola a revisar.
+        start_time (int | None, optional): Timestamp de inicio para filtrar partidas recientes.
+
+    Returns:
+        str: Texto legible del tiempo desde la última partida, o "Never" si no hay partidas.
+    """
+    if isinstance(queue, int):
+        queues = [queue]
+    else:
+        queues = queue
+
+    for queue_code in queues:
+        match_ids = get_match_ids(puuid, queue_code, start=0, count=20, start_time=start_time)
+        if not match_ids:
+            continue
+
+        for match_id in match_ids:
+            match_url = f"https://{ROUTING}.api.riotgames.com/lol/match/v5/matches/{match_id}"
+            match = riot_get(match_url)
+            game_end_timestamp = match.get("info", {}).get("gameEndTimestamp")
+            if game_end_timestamp is not None:
+                played_at = datetime.datetime.fromtimestamp(
+                    game_end_timestamp / 1000, tz=datetime.timezone.utc
+                )
+                return format_time_since(played_at)
+            time.sleep(0.05)
+
+    return "Never"
+
+
 def get_champion_winrate(puuid, champion_id, queues, start_time=None):
     """Calcula el winrate de un campeón para una cuenta en una o más colas.
 
@@ -227,7 +300,7 @@ def get_champion_winrate(puuid, champion_id, queues, start_time=None):
     return wins, losses, winrate, total
 
 
-def build_markdown(champion_display_name, mastery, ranked, ranked_wins, ranked_losses, ranked_winrate, ranked_total, normal_wins, normal_losses, normal_winrate, normal_total):
+def build_markdown(champion_display_name, mastery, ranked, ranked_wins, ranked_losses, ranked_winrate, ranked_total, normal_wins, normal_losses, normal_winrate, normal_total, ranked_last_played, normal_last_played):
     """Construye el bloque de texto en formato Markdown para el README.
 
     Args:
@@ -242,6 +315,8 @@ def build_markdown(champion_display_name, mastery, ranked, ranked_wins, ranked_l
         normal_losses (int): Partidas perdidas en normales esta season.
         normal_winrate (float | None): Winrate en normales esta season.
         normal_total (int): Total de partidas en normales esta season.
+        ranked_last_played (str): Texto legible del tiempo desde la última partida ranked.
+        normal_last_played (str): Texto legible del tiempo desde la última partida normal.
 
     Returns:
         str: Texto completo en Markdown para insertar en el README.
@@ -278,6 +353,9 @@ def build_markdown(champion_display_name, mastery, ranked, ranked_wins, ranked_l
         )
     else:
         lines.append(f"- **Season Normals {champion_display_name} Winrate:** No games")
+
+    lines.append(f"- **Last Ranked Game:** {ranked_last_played}")
+    lines.append(f"- **Last Normal Game:** {normal_last_played}")
 
     lines.append("")
     lines.append(f"_Last update · {time.strftime('%Y-%m-%d %H:%M UTC', time.gmtime())}_")
@@ -333,6 +411,12 @@ def main():
         puuid, champion_id, [400, 430], start_time=season_start
     )
 
+    print("Consultando la última partida ranked...")
+    ranked_last_played = get_last_match_age(puuid, 420, start_time=season_start)
+
+    print("Consultando la última partida normal...")
+    normal_last_played = get_last_match_age(puuid, [400, 430], start_time=season_start)
+
     # Armamos el texto en Markdown que se escribirá en el README.
     block = build_markdown(
         champion_display_name,
@@ -346,6 +430,8 @@ def main():
         normal_losses,
         normal_winrate,
         normal_total,
+        ranked_last_played,
+        normal_last_played,
     )
     print("\n--- Bloque generado ---\n")
     print(block)

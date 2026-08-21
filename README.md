@@ -7,14 +7,14 @@ I'm a OTP Karthus in League of Legends, here you can se my data:
 <!---LOL-STATS-START-HERE--->
 ### 📊 Stats of Karthus
 
-- **Maestry:** Nivel 121 — 1,574,781 puntos
+- **Maestry:** Nivel 121 — 1,579,186 puntos
 - **Rank (SoloQ):** Gold I — 7 LP (25W / 22L, 53.2% WR)
 - **Season SoloQ Karthus Winrate:** 53.2% (25W / 22L - 47 Games)
-- **Season Normals Karthus Winrate:** 55.1% (113W / 92L - 205 Games)
-- **Last Ranked Game:** 3d 11h 5m ago
-- **Last Normal Game:** 1d 15h 43m ago
+- **Season Normals Karthus Winrate:** 55.3% (115W / 93L - 208 Games)
+- **Last Ranked Game:** 4d 11h 7m ago
+- **Last Normal Game:** 5h 31m ago
 
-_Last update · 2026-08-20 09:29 UTC_
+_Last update · 2026-08-21 09:31 UTC_
 <!---LOL-STATS-END-HERE--->
 
 # Abilities

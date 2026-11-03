@@ -11,10 +11,10 @@ I'm a OTP Karthus in League of Legends, here you can se my data:
 - **Rank (SoloQ):** Gold I — 3 LP (27W / 26L, 50.9% WR)
 - **Season SoloQ Karthus Winrate:** 50.9% (27W / 26L - 53 Games)
 - **Season Normals Karthus Winrate:** 52.5% (124W / 112L - 236 Games)
-- **Last Ranked Game:** 52d 14h 52m ago
-- **Last Normal Game:** 2d 55m ago
+- **Last Ranked Game:** 53d 12h 37m ago
+- **Last Normal Game:** 2d 22h 40m ago
 
-_Last update · 2026-11-02 19:03 UTC_
+_Last update · 2026-11-03 16:48 UTC_
 <!---LOL-STATS-END-HERE--->
 
 # Abilities
